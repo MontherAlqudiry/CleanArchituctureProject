@@ -1,6 +1,9 @@
-using Application.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using Application.Infrastructure;
+using Application.Core;
+using Application.Data;
 using Application.Services;
+using Application.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +16,7 @@ builder.Services.AddSwaggerGen();
 
 //Connect with the DataBase
 
-builder.Services.AddDbContext<ApplicationDBContext>(option => 
+builder.Services.AddDbContext<ApplicationDBContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
     );
 
@@ -21,6 +24,7 @@ builder.Services.AddDbContext<ApplicationDBContext>(option =>
 //Add the dependancy Injections
 builder.Services.AddInfrastructureDepandancies();
 builder.Services.AddServiceDependencies();
+builder.Services.AddCoreDependencies();
 
 
 

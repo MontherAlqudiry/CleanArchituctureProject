@@ -4,23 +4,24 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <BaseOutputPath>C:\Users\monther.a\source\repos\CleanArchituctureProject\Application.Core\bin\Debug\net7.0</BaseOutputPath>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\Students\Commands\Handlers\" />
-    <Folder Include="Features\Students\Commands\Models\" />
-    <Folder Include="Features\Students\Commands\" />
-    <Folder Include="Features\Students\Commands\Validators\" />
-    <Folder Include="Features\Students\Queries\Models\" />
-    <Folder Include="Features\Students\Queries\Validators\" />
-    <Folder Include="Mapping\" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Application.Data\Application.Data.csproj" />
     <ProjectReference Include="..\Application.Infrastructure\Application.Infrastructure.csproj" />
     <ProjectReference Include="..\Application.Services\Application.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Users\Commands\Handlers\" />
+    <Folder Include="Features\Users\Commands\Models\" />
+    <Folder Include="Features\Users\Commands\Validatiors\" />
+    <Folder Include="Features\Users\Queries\Validatiors\" />
+    <Folder Include="Mapping\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.1.1" />
   </ItemGroup>
 
 </Project>
