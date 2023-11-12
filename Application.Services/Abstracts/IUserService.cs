@@ -11,5 +11,6 @@ namespace Application.Services.Abstracts
     {
 
         public Task<List<User>> GetUsersListAsync();
+        public Task<User>GetUserbyIdAsync(int id);
     }
 }

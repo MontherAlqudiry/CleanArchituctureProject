@@ -18,12 +18,19 @@ namespace Application.Services.Implementations
            _userRepository = userRepository;
         }
 
+       
 
         public async Task<List<User>> GetUsersListAsync()
         {
 
           return await _userRepository.GetUsersListAsync();
 
+        }
+        
+        public async Task<User> GetUserbyIdAsync(int id)
+        {
+          var user = await _userRepository.GetByIdAsync(id);
+          return user;
         }
     }
 }

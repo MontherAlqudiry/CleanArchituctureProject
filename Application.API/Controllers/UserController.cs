@@ -19,9 +19,18 @@ namespace Application.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUserList()
         {
-
-            var response=await _mediator.Send(new GetUserListQuery());
+            var response = await _mediator.Send(new GetUserListQuery());
             return Ok(response);
         }
+
+
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetUserById([FromRoute] int Id)
+        {
+            var response =await _mediator.Send(new GetUserByIDQuery(Id));
+            return Ok(response);
+        }
+
+
     }
 }
