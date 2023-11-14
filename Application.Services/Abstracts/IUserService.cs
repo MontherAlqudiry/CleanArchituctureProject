@@ -10,5 +10,6 @@ namespace Application.Services.Abstracts
         public Task<User> GetUserbyIdAsNoTrackingAsync(int id);
         public Task<string> AddUserAsync(User user);
         public Task<string> UpdateUserAsync(User user);
+        public Task<string> DeleteUserAsync(User user);
     }
 }

@@ -60,6 +60,12 @@ namespace Application.Services.Implementations
 
         }
 
+        public async Task<string> DeleteUserAsync(User user)
+        {
+
+            await _userRepository.DeleteAsync(user);
+            return "User Deleted Successfully!";
+        }
     }
 
 }

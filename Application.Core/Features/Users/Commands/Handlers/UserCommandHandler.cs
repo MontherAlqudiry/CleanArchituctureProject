@@ -8,7 +8,9 @@ using MediatR;
 namespace Application.Core.Features.Users.Commands.Handlers
 {
     public class UserCommandHandler : ResponseHandler, IRequestHandler<AddUserCommand, string>,
-                                                       IRequestHandler<EditUserCommand, string>
+                                                       IRequestHandler<EditUserCommand, string>,
+                                                       IRequestHandler<DeleteUserCommand, string>
+
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
@@ -73,6 +75,26 @@ namespace Application.Core.Features.Users.Commands.Handlers
 
         }
 
+        public async Task<string> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+        {
+            //check if user exist
+            var userCheck = await _userService.GetUserbyIdAsNoTrackingAsync(request.Id);
+            if (userCheck == null)
+            {
+                return "Bad Request!";
+            }
+            //var userMapper = _mapper.Map<User>(request);
+            var userResult = await _userService.DeleteUserAsync(userCheck);
+            if (userResult == "User Deleted Successfully!")
+            {
+                return userResult;
+            }
+            else
+            {
+                return "Bad Request!";
+            }
+
+        }
 
     }
 }

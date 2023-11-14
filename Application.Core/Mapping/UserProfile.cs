@@ -13,6 +13,7 @@ namespace Application.Core.Mapping
             CreateMap<User, GetUserByIdResponse>();
             CreateMap<AddUserCommand, User>();
             CreateMap<EditUserCommand, User>();
+            CreateMap<DeleteUserCommand, User>();
 
         }
     }
