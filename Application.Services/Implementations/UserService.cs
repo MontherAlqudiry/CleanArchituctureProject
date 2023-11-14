@@ -1,11 +1,6 @@
 ﻿using Application.Data.Entities;
 using Application.Infrastructure.Abstracts;
 using Application.Services.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services.Implementations
 {
@@ -15,22 +10,50 @@ namespace Application.Services.Implementations
 
         public UserService(IUserRepository userRepository)
         {
-           _userRepository = userRepository;
+            _userRepository = userRepository;
         }
 
-       
+
 
         public async Task<List<User>> GetUsersListAsync()
         {
 
-          return await _userRepository.GetUsersListAsync();
+            return await _userRepository.GetUsersListAsync();
 
         }
-        
+
         public async Task<User> GetUserbyIdAsync(int id)
         {
-          var user = await _userRepository.GetByIdAsync(id);
-          return user;
+            var user = await _userRepository.GetByIdAsync(id);
+            return user;
         }
+
+        public async Task<string> AddUserAsync(User user)
+        {
+
+            //Check if the gmail is Exist or Not
+            var userCheck = _userRepository.GetTableNoTracking().Where(x => x.Email == user.Email).FirstOrDefault();
+            if (userCheck != null)
+            {
+                return "User is Exist Already!";
+            }
+
+            //add the user to the database after checking if it's already exist  
+            await _userRepository.AddAsync(user);
+            return "User Added successfully!";
+
+
+        }
+
+        public async Task<string> UpdateUserAsync(User user)
+        {
+
+            await _userRepository.UpdateAsync(user);
+            return "Updated Successfully!";
+
+
+        }
+
     }
+
 }

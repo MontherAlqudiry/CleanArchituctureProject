@@ -15,6 +15,8 @@ namespace Application.Infrastructure.Bases
         Task<T> GetByIdAsync(int id);
         Task SaveChangesAsync();
         //ApplicationDBContext BeginTransaction();
+        IQueryable<T> GetTableNoTracking();
+        IQueryable<T> GetTableAsTracking();
         void Commit();
         void RollBack();
         Task<T> AddAsync(T entity);

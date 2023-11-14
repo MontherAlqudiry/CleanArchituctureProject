@@ -13,14 +13,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Users\Commands\Handlers\" />
-    <Folder Include="Features\Users\Commands\Models\" />
-    <Folder Include="Features\Users\Commands\Validatiors\" />
-    <Folder Include="Features\Users\Queries\Validatiors\" />
+    <Folder Include="Features\Users\Queries\Validators\" />
+    <Folder Include="Mapping\CommandMapping\" />
+    <Folder Include="Mapping\QueryMapping\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.8.0" />
     <PackageReference Include="MediatR" Version="12.1.1" />
   </ItemGroup>
 

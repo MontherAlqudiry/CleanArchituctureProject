@@ -44,16 +44,16 @@ namespace Application.Core.Bases
             return new Response<T>() {
                 //StatusCode = System.Net.HttpStatusCode.BadRequest,
                 //Succeeded = false,
-                //Message = Message == null ? "Bad Request" : Message
+                //message = Message == null ? "Bad Request" : Message
             };
         }
 
-        public Response<T> NotFound<T>(string message)
+        public Response<T> NotFound<T>(string Message =null)
         {
             return new Response<T>() {
                 //StatusCode = System.Net.HttpStatusCode.NotFound,
                 //Succeeded = false,
-                //Message = message == null ? "Not Found" : message
+               // Message = Message == null ? "Not Found" : Message
             };
         }
         

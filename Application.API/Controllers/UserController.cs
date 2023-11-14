@@ -1,6 +1,6 @@
-﻿using Application.Core.Features.Users.Queries.Models;
+﻿using Application.Core.Features.Users.Commands.Models;
+using Application.Core.Features.Users.Queries.Models;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Application.API.Controllers
@@ -27,10 +27,29 @@ namespace Application.API.Controllers
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetUserById([FromRoute] int Id)
         {
-            var response =await _mediator.Send(new GetUserByIDQuery(Id));
+            var response = await _mediator.Send(new GetUserByIDQuery(Id));
             return Ok(response);
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> CreateUser([FromBody] AddUserCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> EditUser([FromBody] EditUserCommand command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Invalid model state");
+            }
+
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
 
     }
 }

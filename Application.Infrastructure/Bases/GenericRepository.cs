@@ -1,30 +1,24 @@
 ﻿using Application.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Infrastructure.Bases
 {
-    public class GenericRepository<T> :IGenericRepository<T> where T :class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
 
-      
+
 
         protected readonly ApplicationDBContext _dbContext;
 
-      
 
-    
+
+
         public GenericRepository(ApplicationDBContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-      
+
         public virtual async Task<T> GetByIdAsync(int id)
         {
 
@@ -57,6 +51,7 @@ namespace Application.Infrastructure.Bases
 
         public virtual async Task UpdateAsync(T entity)
         {
+
             _dbContext.Set<T>().Update(entity);
             await _dbContext.SaveChangesAsync();
 
@@ -108,7 +103,16 @@ namespace Application.Infrastructure.Bases
 
         }
 
-      
+        public IQueryable<T> GetTableNoTracking()
+        {
+            return _dbContext.Set<T>().AsNoTracking().AsQueryable();
+        }
+
+        public IQueryable<T> GetTableAsTracking()
+        {
+            return _dbContext.Set<T>().AsQueryable();
+
+        }
 
         public virtual async Task UpdateRangeAsync(ICollection<T> entities)
         {

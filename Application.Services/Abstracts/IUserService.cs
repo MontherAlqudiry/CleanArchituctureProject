@@ -1,9 +1,4 @@
 ﻿using Application.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services.Abstracts
 {
@@ -11,6 +6,8 @@ namespace Application.Services.Abstracts
     {
 
         public Task<List<User>> GetUsersListAsync();
-        public Task<User>GetUserbyIdAsync(int id);
+        public Task<User> GetUserbyIdAsync(int id);
+        public Task<string> AddUserAsync(User user);
+        public Task<string> UpdateUserAsync(User user);
     }
 }
