@@ -1,11 +1,4 @@
-﻿using Application.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Application.Infrastructure.Bases
+﻿namespace Application.Infrastructure.Bases
 {
     public interface IGenericRepository<T> where T : class
     {
@@ -13,6 +6,7 @@ namespace Application.Infrastructure.Bases
 
         Task DeleteRangeAsync(ICollection<T> entities);
         Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsNoTrackingAsync(int id);
         Task SaveChangesAsync();
         //ApplicationDBContext BeginTransaction();
         IQueryable<T> GetTableNoTracking();

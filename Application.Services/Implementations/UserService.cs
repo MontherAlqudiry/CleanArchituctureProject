@@ -28,6 +28,12 @@ namespace Application.Services.Implementations
             return user;
         }
 
+        public async Task<User> GetUserbyIdAsNoTrackingAsync(int id)
+        {
+            var user = await _userRepository.GetByIdAsNoTrackingAsync(id);
+            return user;
+        }
+
         public async Task<string> AddUserAsync(User user)
         {
 

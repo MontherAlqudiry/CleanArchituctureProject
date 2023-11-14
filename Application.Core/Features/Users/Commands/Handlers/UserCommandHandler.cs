@@ -52,7 +52,7 @@ namespace Application.Core.Features.Users.Commands.Handlers
         public async Task<string> Handle(EditUserCommand request, CancellationToken cancellationToken)
         {
             //check if user exist
-            var user = await _userService.GetUserbyIdAsync(request.Id);
+            var user = await _userService.GetUserbyIdAsNoTrackingAsync(request.Id);
             if (user == null)
             {
                 return "Bad Request!";
@@ -72,5 +72,7 @@ namespace Application.Core.Features.Users.Commands.Handlers
             }
 
         }
+
+
     }
 }

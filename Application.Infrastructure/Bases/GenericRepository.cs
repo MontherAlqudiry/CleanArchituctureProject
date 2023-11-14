@@ -25,7 +25,11 @@ namespace Application.Infrastructure.Bases
             return await _dbContext.Set<T>().FindAsync(id);
         }
 
+        public virtual async Task<T> GetByIdAsNoTrackingAsync(int id)
+        {
 
+            return await _dbContext.Set<T>().AsNoTracking().FirstOrDefaultAsync(e => EF.Property<int>(e, "Id") == id);
+        }
 
         public virtual async Task AddRangeAsync(ICollection<T> entities)
         {
