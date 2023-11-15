@@ -18,8 +18,17 @@ namespace Application.Infrastructure.Repositories
 
         public async Task<List<Complaint>> GetComplaintsListAsync()
         {
-            return await _complaint.ToListAsync();
 
+
+            return await _complaint.Include(c => c.Demands).ToListAsync();
+
+        }
+
+        public async Task<Complaint> GetComplaintByIdAsync(int Id)
+        {
+            var result = await _complaint.Include(c => c.Demands).FirstOrDefaultAsync(e => EF.Property<int>(e, "Id") == Id);
+
+            return result;
         }
 
 

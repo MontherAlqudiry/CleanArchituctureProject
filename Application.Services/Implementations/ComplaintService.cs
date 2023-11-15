@@ -20,6 +20,17 @@ namespace Application.Services.Implementations
             return ComplaintsResult;
         }
 
+        public async Task<Complaint> GetComplaintByIdAsync(int Id)
+        {
+            var ComplaintResult = await _complaintRepository.GetComplaintByIdAsync(Id);
+            return ComplaintResult;
+        }
+
+        public async Task<string> CreateComplaintAsync(Complaint complaint)
+        {
+            await _complaintRepository.AddAsync(complaint);
+            return "Complaint Added Successfully";
+        }
 
     }
 }

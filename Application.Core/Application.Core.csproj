@@ -13,8 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Complaints\Commands\Handlers\" />
-    <Folder Include="Features\Complaints\Commands\Models\" />
     <Folder Include="Features\Complaints\Commands\Validators\" />
     <Folder Include="Features\Complaints\Queries\Validators\" />
     <Folder Include="Features\Users\Queries\Validators\" />

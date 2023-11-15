@@ -6,7 +6,9 @@ using MediatR;
 
 namespace Application.Core.Features.Complaints.Queries.Handlers
 {
-    public class ComplaintQueryHandler : IRequestHandler<GetComplaintsListQuery, List<GetComplaintListResponse>>
+    public class ComplaintQueryHandler : IRequestHandler<GetComplaintsListQuery, List<GetComplaintListResponse>>,
+                                         IRequestHandler<GetComplaintByIdQuery, GetComplaintByIdResponse>
+
     {
         private readonly IComplaintService _complaintService;
         private readonly IMapper _mapper;
@@ -24,6 +26,12 @@ namespace Application.Core.Features.Complaints.Queries.Handlers
             return ComplaintMapper;
         }
 
-
+        public async Task<GetComplaintByIdResponse> Handle(GetComplaintByIdQuery request, CancellationToken cancellationToken)
+        {
+            //check if complaint exist
+            var ComplaintResult = await _complaintService.GetComplaintByIdAsync(request.Id);
+            var complaintMapper = _mapper.Map<GetComplaintByIdResponse>(ComplaintResult);
+            return complaintMapper;
+        }
     }
 }

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Application.Data.Entities
 {
@@ -16,6 +12,7 @@ namespace Application.Data.Entities
         public int? CompId { get; set; }
 
         [ForeignKey("CompId")]
-        public virtual Complaint Complaint { get; set; }
+        [JsonIgnore]
+        public virtual Complaint? Complaint { get; set; }
     }
 }

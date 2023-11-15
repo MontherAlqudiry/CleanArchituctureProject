@@ -25,7 +25,7 @@ namespace Application.Core.Features.Users.Commands.Handlers
         public async Task<string> Handle(AddUserCommand request, CancellationToken cancellationToken)
         {
 
-            //the request here has the user that will create but the userservice parameter is of type User so we have to mapping from request to User
+            //the request here has the user that will be create of type (AddUserCommand) but the _userservice parameter is of type (User) so we have to mapping from request to User
 
             var userMapper = _mapper.Map<User>(request);
             //add user
@@ -44,9 +44,6 @@ namespace Application.Core.Features.Users.Commands.Handlers
             {
                 return "Bad Request!";
             }
-
-
-
 
 
         }
