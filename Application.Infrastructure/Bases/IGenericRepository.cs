@@ -4,7 +4,7 @@
     {
 
 
-        Task DeleteRangeAsync(ICollection<T> entities);
+
         Task<T> GetByIdAsync(int id);
         Task<T> GetByIdAsNoTrackingAsync(int id);
         Task SaveChangesAsync();
@@ -18,7 +18,7 @@
         Task UpdateAsync(T entity);
         Task UpdateRangeAsync(ICollection<T> entities);
         Task DeleteAsync(T entity);
-
+        Task DeleteRangeAsync(ICollection<T> entities);
 
     }
 }

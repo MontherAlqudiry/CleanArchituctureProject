@@ -11,6 +11,7 @@ namespace Application.Services
         {
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IComplaintService, ComplaintService>();
             return services;
 
         }

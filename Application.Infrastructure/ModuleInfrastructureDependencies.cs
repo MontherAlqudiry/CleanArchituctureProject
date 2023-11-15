@@ -12,6 +12,7 @@ namespace Application.Infrastructure
         {
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IComplaintRepository, ComplaintRepository>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             return services;
 

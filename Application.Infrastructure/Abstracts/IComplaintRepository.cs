@@ -3,12 +3,8 @@ using Application.Infrastructure.Bases;
 
 namespace Application.Infrastructure.Abstracts
 {
-    public interface IUserRepository : IGenericRepository<User>
+    public interface IComplaintRepository : IGenericRepository<Complaint>
     {
-
-        public Task<List<User>> GetUsersListAsync();
-
-
-
+        public Task<List<Complaint>> GetComplaintsListAsync();
     }
 }

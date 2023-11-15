@@ -9,8 +9,13 @@ namespace Application.Core.Mapping
     {
         public UserProfile()
         {
+
+            //Queries
             CreateMap<User, GetUserListResponse>();
             CreateMap<User, GetUserByIdResponse>();
+
+
+            //Commands
             CreateMap<AddUserCommand, User>();
             CreateMap<EditUserCommand, User>();
             CreateMap<DeleteUserCommand, User>();
