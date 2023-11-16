@@ -9,5 +9,6 @@ namespace Application.Services.Abstracts
         public Task<Complaint> CreateComplaintAsync(Complaint complaint);
         public Task<string> CreateDemandsOfComplaintAsync(ICollection<Demand> demands);
         public Task<string> DeleteComplaintAsync(Complaint complaint);
+        public Task<List<Complaint>> GetComplaintByUserIdAsync(int userId);
     }
 }

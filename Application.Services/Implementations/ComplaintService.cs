@@ -45,5 +45,11 @@ namespace Application.Services.Implementations
             return "Complaint deleted successfully!";
         }
 
+        public async Task<List<Complaint>> GetComplaintByUserIdAsync(int userId)
+        {
+            var result = await _complaintRepository.GetComplaintByUserIdAsync(userId);
+            return result;
+        }
+
     }
 }

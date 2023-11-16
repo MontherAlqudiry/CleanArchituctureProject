@@ -31,6 +31,10 @@ namespace Application.Infrastructure.Repositories
             return result;
         }
 
-
+        public async Task<List<Complaint>> GetComplaintByUserIdAsync(int UserId)
+        {
+            var result = await _complaint.Include(c => c.Demands).Where(x => x.UserId == UserId).ToListAsync();
+            return result;
+        }
     }
 }

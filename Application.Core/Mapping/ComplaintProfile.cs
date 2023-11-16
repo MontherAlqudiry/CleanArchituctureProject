@@ -17,9 +17,13 @@ namespace Application.Core.Mapping
             CreateMap<Complaint, GetComplaintByIdResponse>()
                 .ForMember(dest => dest.Demands, opt => opt.MapFrom(src => src.Demands));
 
+            CreateMap<Complaint, GetComplaintByUserIdResponse>()
+                .ForMember(dest => dest.Demands, opt => opt.MapFrom(src => src.Demands));
+
             //Command
             CreateMap<AddComplaintCommand, Complaint>()
                 .ForMember(dest => dest.Demands, opt => opt.MapFrom(src => src.Demands));
+
         }
     }
 }

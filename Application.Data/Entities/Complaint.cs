@@ -18,6 +18,7 @@ namespace Application.Data.Entities
         public string Description { get; set; }
         public string? File { get; set; }
         public int? UserId { get; set; }
+        public string? Status { get; set; } = "Pending";
         [ForeignKey("UserId")]
         public virtual User user { get; set; }
 

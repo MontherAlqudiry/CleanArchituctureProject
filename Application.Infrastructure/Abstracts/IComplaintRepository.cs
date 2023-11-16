@@ -7,5 +7,6 @@ namespace Application.Infrastructure.Abstracts
     {
         public Task<List<Complaint>> GetComplaintsListAsync();
         public Task<Complaint> GetComplaintByIdAsync(int Id);
+        public Task<List<Complaint>> GetComplaintByUserIdAsync(int UserId);
     }
 }

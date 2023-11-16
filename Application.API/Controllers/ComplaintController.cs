@@ -38,6 +38,17 @@ namespace Application.API.Controllers
 
         }
 
+        [HttpGet("{UserId}")]
+        public async Task<IActionResult> GetComplaintByUserId([FromRoute] int UserId)
+        {
+            var response = await _mediator.Send(new GetComplaintListByUserIdQuery(UserId));
+            if (response == null || response.Count() == 0)
+            {
+                return BadRequest($"There is no Complaint with the given User Id : {UserId}");
+            }
+            return Ok(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddComplaint([FromBody] AddComplaintCommand command)
         {
