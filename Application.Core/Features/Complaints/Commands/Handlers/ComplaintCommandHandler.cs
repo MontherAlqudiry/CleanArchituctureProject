@@ -9,6 +9,7 @@ namespace Application.Core.Features.Complaints.Commands.Handlers
 {
     public class ComplaintCommandHandler : ResponseHandler, IRequestHandler<AddComplaintCommand, string>
                                                           , IRequestHandler<DeleteComplaintCommand, string>
+                                                          , IRequestHandler<UpdateComplaintStateCommand, string>
 
     {
         private readonly IComplaintService _complaintService;
@@ -74,6 +75,16 @@ namespace Application.Core.Features.Complaints.Commands.Handlers
             {
                 return "Bad Request!";
             }
+        }
+
+        public async Task<string> Handle(UpdateComplaintStateCommand request, CancellationToken cancellationToken)
+        {
+
+            var complaintMapper = _mapper.Map<Complaint>(request);
+            var complaintResult = await _complaintService.ChangeComplaintStateAsync(complaintMapper, request.NewState);
+            return complaintResult;
+
+
         }
     }
 }

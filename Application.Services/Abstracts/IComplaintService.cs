@@ -10,5 +10,6 @@ namespace Application.Services.Abstracts
         public Task<string> CreateDemandsOfComplaintAsync(ICollection<Demand> demands);
         public Task<string> DeleteComplaintAsync(Complaint complaint);
         public Task<List<Complaint>> GetComplaintByUserIdAsync(int userId);
+        public Task<string> ChangeComplaintStateAsync(Complaint complaint, string state);
     }
 }

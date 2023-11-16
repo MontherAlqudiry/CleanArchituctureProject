@@ -24,6 +24,10 @@ namespace Application.Core.Mapping
             CreateMap<AddComplaintCommand, Complaint>()
                 .ForMember(dest => dest.Demands, opt => opt.MapFrom(src => src.Demands));
 
+            CreateMap<UpdateComplaintStateCommand, Complaint>();
+
+
+
         }
     }
 }

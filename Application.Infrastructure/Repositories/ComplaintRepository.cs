@@ -20,7 +20,7 @@ namespace Application.Infrastructure.Repositories
         {
 
 
-            return await _complaint.Include(c => c.Demands).ToListAsync();
+            return await _complaint.Include(c => c.Demands).Where(C => C.Status == "Pending").ToListAsync();
 
         }
 
@@ -36,5 +36,32 @@ namespace Application.Infrastructure.Repositories
             var result = await _complaint.Include(c => c.Demands).Where(x => x.UserId == UserId).ToListAsync();
             return result;
         }
+
+        public async Task<string> ChangeComplaintStatusAsync(Complaint complaint, string State)
+        {
+
+            if (State == "Approved")
+            {
+                complaint.Status = State;
+                _complaint.Update(complaint);
+                await _dbContext.SaveChangesAsync();
+                return "Complaint state is change to Approved!";
+
+            }
+            else if (State == "Denied")
+            {
+                complaint.Status = State;
+                _complaint.Update(complaint);
+                await _dbContext.SaveChangesAsync();
+                return "Complaint state is change to Denied!";
+            }
+            else
+            {
+                return "Bad Request!";
+            }
+
+        }
+
+
     }
 }

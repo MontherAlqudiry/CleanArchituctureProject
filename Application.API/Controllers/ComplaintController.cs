@@ -63,5 +63,12 @@ namespace Application.API.Controllers
             return Ok(response);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> UpdateComplaintState([FromBody] UpdateComplaintStateCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
     }
 }

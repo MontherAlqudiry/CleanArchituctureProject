@@ -51,5 +51,11 @@ namespace Application.Services.Implementations
             return result;
         }
 
+        public async Task<string> ChangeComplaintStateAsync(Complaint complaint, string state)
+        {
+            var result = await _complaintRepository.ChangeComplaintStatusAsync(complaint, state);
+            return result;
+        }
+
     }
 }
