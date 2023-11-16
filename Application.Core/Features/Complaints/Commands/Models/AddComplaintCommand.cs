@@ -11,6 +11,6 @@ namespace Application.Core.Features.Complaints.Commands.Models
         public string Description { get; set; }
         public string? File { get; set; }
         public int? UserId { get; set; }
-        public virtual ICollection<Demand> Demands { get; set; }
+        public virtual ICollection<Demand>? Demands { get; set; }
     }
 }

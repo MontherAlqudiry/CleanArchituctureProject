@@ -45,5 +45,12 @@ namespace Application.API.Controllers
             return Ok(response);
         }
 
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteComplaint([FromRoute] int Id)
+        {
+            var response = await _mediator.Send(new DeleteComplaintCommand(Id));
+            return Ok(response);
+        }
+
     }
 }

@@ -7,11 +7,12 @@ namespace Application.Services.Implementations
     public class ComplaintService : IComplaintService
     {
         private readonly IComplaintRepository _complaintRepository;
+        private readonly IDemandRepository _demandRepository;
 
-        public ComplaintService(IComplaintRepository complaintRepository)
+        public ComplaintService(IComplaintRepository complaintRepository, IDemandRepository demandRepository)
         {
             _complaintRepository = complaintRepository;
-
+            _demandRepository = demandRepository;
         }
 
         public async Task<List<Complaint>> GetComplaintsAsync()
@@ -26,10 +27,22 @@ namespace Application.Services.Implementations
             return ComplaintResult;
         }
 
-        public async Task<string> CreateComplaintAsync(Complaint complaint)
+        public async Task<Complaint> CreateComplaintAsync(Complaint complaint)
         {
-            await _complaintRepository.AddAsync(complaint);
-            return "Complaint Added Successfully";
+            var result = await _complaintRepository.AddAsync(complaint);
+            return result;
+        }
+
+        public async Task<string> CreateDemandsOfComplaintAsync(ICollection<Demand> demands)
+        {
+            await _demandRepository.AddRangeAsync(demands);
+            return "Demands Added Successfully";
+        }
+
+        public async Task<string> DeleteComplaintAsync(Complaint complaint)
+        {
+            await _complaintRepository.DeleteAsync(complaint);
+            return "Complaint deleted successfully!";
         }
 
     }

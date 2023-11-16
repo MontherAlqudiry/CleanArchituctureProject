@@ -21,7 +21,7 @@ namespace Application.Data.Entities
         [ForeignKey("UserId")]
         public virtual User user { get; set; }
 
-        public virtual ICollection<Demand> Demands { get; set; }
+        public virtual ICollection<Demand>? Demands { get; set; }
 
 
 
