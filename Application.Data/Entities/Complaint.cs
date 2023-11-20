@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Application.Data.Entities
+﻿namespace Application.Data.Entities
 {
     public class Complaint
     {
@@ -18,10 +16,8 @@ namespace Application.Data.Entities
         public string Description { get; set; }
         public string? File { get; set; }
         public int? UserId { get; set; }
-        public string? Status { get; set; } = "Pending";
-        [ForeignKey("UserId")]
+        public string? Status { get; set; }
         public virtual User user { get; set; }
-
         public virtual ICollection<Demand>? Demands { get; set; }
 
 

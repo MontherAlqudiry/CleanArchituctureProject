@@ -22,13 +22,66 @@ namespace Application.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Demand>()
-                .HasOne(d => d.Complaint)
-                .WithMany(c => c.Demands)
-                .HasForeignKey(d => d.CompId)
-                .OnDelete(DeleteBehavior.Cascade);
+
+            //User Entity
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+
+                entity.Property(x => x.FName)
+                      .IsRequired()
+                      .HasComment("First Name is required");
+                entity.Property(x => x.LName)
+                      .IsRequired()
+                      .HasComment("Last Name is required!");
+                entity.Property(x => x.Email)
+                      .IsRequired()
+                      .HasComment("Email is required!");
+                entity.Property(x => x.Password)
+                      .IsRequired()
+                      .HasComment("Password is required!");
+
+                entity.HasMany(x => x.Complaints)
+                      .WithOne(r => r.user)
+                      .HasForeignKey(r => r.UserId)
+                      .OnDelete(deleteBehavior: DeleteBehavior.Cascade);
+
+            });
+
+
+            //User Complaint
+            modelBuilder.Entity<Complaint>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+
+                entity.Property(x => x.Description)
+                      .IsRequired()
+                      .HasComment("Content is required!");
+                entity.Property(x => x.Status)
+                      .HasDefaultValue("pending");
+
+                entity.HasMany(x => x.Demands)
+                      .WithOne(r => r.Complaint)
+                      .HasForeignKey(r => r.CompId)
+                      .OnDelete(deleteBehavior: DeleteBehavior.Cascade);
+
+            });
+
+
+            //Deamnd
+            modelBuilder.Entity<Demand>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+
+                entity.Property(x => x.Description)
+                      .IsRequired()
+                      .HasComment("Content is required!");
+
+            });
+
 
             base.OnModelCreating(modelBuilder);
+
         }
 
     }
