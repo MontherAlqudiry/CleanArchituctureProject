@@ -6,12 +6,7 @@ namespace Application.Infrastructure.Bases
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
 
-
-
         protected readonly ApplicationDBContext _dbContext;
-
-
-
 
         public GenericRepository(ApplicationDBContext dbContext)
         {

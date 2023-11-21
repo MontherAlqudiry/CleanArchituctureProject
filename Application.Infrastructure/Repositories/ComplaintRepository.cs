@@ -35,30 +35,27 @@ namespace Application.Infrastructure.Repositories
         {
             var result = await _complaint.Include(c => c.Demands).Where(x => x.UserId == UserId).ToListAsync();
             return result;
+
         }
 
         public async Task<string> ChangeComplaintStatusAsync(Complaint complaint, string State)
         {
 
-            if (State == "Approved")
-            {
-                complaint.Status = State;
-                _complaint.Update(complaint);
-                await _dbContext.SaveChangesAsync();
-                return "Complaint state is change to Approved!";
+            complaint.Status = State;
+            _complaint.Update(complaint);
+            await _dbContext.SaveChangesAsync();
 
-            }
-            else if (State == "Denied")
+            if (State.ToLower() == "approved")
             {
-                complaint.Status = State;
-                _complaint.Update(complaint);
-                await _dbContext.SaveChangesAsync();
-                return "Complaint state is change to Denied!";
+                return "Complaint state is changed to Approved!";
             }
-            else
+
+            else if (State.ToLower() == "denied")
             {
-                return "Bad Request!";
+                return "Complaint state is changed to Denied!";
             }
+
+            else return "Bad Request!";
 
         }
 

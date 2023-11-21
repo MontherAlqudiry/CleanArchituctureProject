@@ -64,7 +64,7 @@ namespace Application.Core.Features.Complaints.Commands.Handlers
             var complaintResult = await _complaintService.GetComplaintByIdAsync(request.Id);
             if (complaintResult == null)
             {
-                return $"No complaints with the given Id : {request.Id}";
+                return $"No complaints for the given Id : {request.Id}";
             }
             var complaintToDeleteResult = await _complaintService.DeleteComplaintAsync(complaintResult);
             if (complaintToDeleteResult == "Complaint deleted successfully!")
