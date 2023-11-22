@@ -48,10 +48,10 @@ namespace Application.API.Controllers
             return Ok(response);
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteApplicationUser([FromBody] DeleteApplicationUserCommand command)
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteApplicationUser([FromRoute] int Id)
         {
-            var response = await _mediator.Send(command);
+            var response = await _mediator.Send(new DeleteApplicationUserCommand(Id));
             return Ok(response);
         }
     }
