@@ -1,9 +1,12 @@
 ﻿using Application.Data.Entities;
+using Application.Data.Entities.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Infrastructure.Data
 {
-    public class ApplicationDBContext : DbContext
+    public class ApplicationDBContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int, IdentityUserClaim<int>, IdentityUserRole<int>, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
         public ApplicationDBContext()
         {
@@ -76,6 +79,15 @@ namespace Application.Infrastructure.Data
                 entity.Property(x => x.Description)
                       .IsRequired()
                       .HasComment("Content is required!");
+
+            });
+
+
+            modelBuilder.Entity<ApplicationUser>(entity =>
+            {
+                entity.Property(x => x.Fullname).IsRequired().HasComment("Full Name is required!");
+                entity.Property(x => x.UserName).IsRequired().HasComment("User Name is required!");
+                entity.Property(x => x.Email).IsRequired().HasComment("Email is required!");
 
             });
 

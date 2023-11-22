@@ -1,7 +1,9 @@
 using Application.Core;
+using Application.Data.Entities.Identity;
 using Application.Infrastructure;
 using Application.Infrastructure.Data;
 using Application.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -32,6 +34,30 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
 builder.Services.AddInfrastructureDepandancies();
 builder.Services.AddServiceDependencies();
 builder.Services.AddCoreDependencies();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(
+               options =>
+               {
+                   // Password settings.
+                   options.Password.RequireDigit = true;
+                   options.Password.RequireLowercase = true;
+                   options.Password.RequireNonAlphanumeric = true;
+                   options.Password.RequireUppercase = true;
+                   options.Password.RequiredLength = 6;
+                   options.Password.RequiredUniqueChars = 1;
+
+                   // Lockout settings.
+                   options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(4);
+                   options.Lockout.MaxFailedAccessAttempts = 5;
+                   options.Lockout.AllowedForNewUsers = true;
+
+                   // User settings.
+                   options.User.AllowedUserNameCharacters =
+                   "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                   options.User.RequireUniqueEmail = true;
+
+
+
+               }).AddEntityFrameworkStores<ApplicationDBContext>().AddDefaultTokenProviders();
 #endregion
 
 
