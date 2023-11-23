@@ -11,6 +11,7 @@ namespace Application.Core.Features.ApplicationUserCore.Commands.Handlers
     public class ApplicationUserCommandHandler : IRequestHandler<AddApplicationUserCommand, string>
                                                 , IRequestHandler<EditApplicationUserCommand, string>
                                                 , IRequestHandler<DeleteApplicationUserCommand, string>
+                                                , IRequestHandler<ChangePasswordApplicationUserCommand, string>
     {
         private readonly IStringLocalizer<SharedResources> _stringLocalizer;
         private readonly IMapper _mapper;
@@ -97,6 +98,25 @@ namespace Application.Core.Features.ApplicationUserCore.Commands.Handlers
             {
                 return ApplicationUserResult.Errors.FirstOrDefault().Description;
 
+            }
+        }
+
+        public async Task<string> Handle(ChangePasswordApplicationUserCommand request, CancellationToken cancellationToken)
+        {
+            //Check the user if exist then find user by id
+            var ApplicationUser = await _userManager.FindByIdAsync(request.Id.ToString());
+            if (ApplicationUser == null) { return "Bad Request!"; }
+
+            //cahnge Password using cahngePasswordAsync()
+            var result = await _userManager.ChangePasswordAsync(ApplicationUser, request.CurrentPassword, request.NewPassword);
+            //no need for mapping because the userById result is an applicationUser which is the type that must send
+            if (!result.Succeeded)
+            {
+                return result.Errors.FirstOrDefault().Description;
+            }
+            else
+            {
+                return "Password Changed Successfully!";
             }
         }
     }

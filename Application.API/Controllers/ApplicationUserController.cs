@@ -47,6 +47,12 @@ namespace Application.API.Controllers
             var response = await _mediator.Send(command);
             return Ok(response);
         }
+        [HttpPut]
+        public async Task<IActionResult> ChangePasswordApllicationUser([FromBody] ChangePasswordApplicationUserCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
 
         [HttpDelete("{Id}")]
         public async Task<IActionResult> DeleteApplicationUser([FromRoute] int Id)

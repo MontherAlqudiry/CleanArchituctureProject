@@ -92,6 +92,8 @@ namespace Application.Infrastructure.Data
             });
 
 
+
+
             base.OnModelCreating(modelBuilder);
 
         }
