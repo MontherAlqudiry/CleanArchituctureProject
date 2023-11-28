@@ -1,4 +1,5 @@
 using Application.Core;
+using Application.Data.Entities.Helpers;
 using Application.Data.Entities.Identity;
 using Application.Infrastructure;
 using Application.Infrastructure.Data;
@@ -60,6 +61,11 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(
 
                }).AddEntityFrameworkStores<ApplicationDBContext>().AddDefaultTokenProviders();
 #endregion
+
+//JwtSettings
+var jwtSettings = new JwtSettings();
+builder.Configuration.GetSection("jwtSettings").Bind(jwtSettings);
+builder.Services.AddSingleton(jwtSettings);
 
 
 builder.Services.AddLocalization(opt =>
