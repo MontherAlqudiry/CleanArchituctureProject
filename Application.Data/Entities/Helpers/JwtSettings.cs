@@ -12,5 +12,6 @@
         public int AccessTokenExpireDate { get; set; }
         public int RefreshTokenExpireDate { get; set; }
 
+
     }
 }

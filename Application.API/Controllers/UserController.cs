@@ -1,12 +1,14 @@
 ﻿using Application.Core.Features.Users.Commands.Models;
 using Application.Core.Features.Users.Queries.Models;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Application.API.Controllers
 {
     [Route("api/[controller]/[Action]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -18,6 +20,7 @@ namespace Application.API.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetUserList()
+
         {
             var response = await _mediator.Send(new GetUserListQuery());
             return Ok(response);

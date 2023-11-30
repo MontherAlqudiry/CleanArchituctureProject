@@ -1,26 +1,48 @@
-﻿//using Application.Data.Entities.Helpers;
-//using Application.Data.Entities.Identity;
-//using Application.Infrastructure.Data;
-//using Microsoft.AspNetCore.Identity;
-//using Microsoft.Extensions.Configuration;
+﻿//using Microsoft.AspNetCore.Authentication.JwtBearer;
 //using Microsoft.Extensions.DependencyInjection;
+//using Microsoft.OpenApi.Models;
 
 //namespace Application.Infrastructure
 //{
 //    public static class ServiceRegistration
 //    {
 
-//        public static IServiceCollection AddServiceRegistration(IServiceCollection services, IConfiguration configuration)
+//        public static IServiceCollection AddServiceRegistration(IServiceCollection services)
 //        {
+//            services.AddSwaggerGen(c =>
+//            {
+//                c.SwaggerDoc("v1", new OpenApiInfo { Title = "School Project", Version = "v1" });
+//                c.EnableAnnotations();
 
-//            var jwtSettings = new JwtSettings();
-//            configuration.GetSection(nameof(jwtSettings)).Bind(jwtSettings);
-//            services.AddSingleton(jwtSettings);
+//                c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+//                {
+//                    Description = "JWT Authorization header using the Bearer scheme (Example: 'Bearer 12345abcdef')",
+//                    Name = "Authorization",
+//                    In = ParameterLocation.Header,
+//                    Type = SecuritySchemeType.ApiKey,
+//                    Scheme = JwtBearerDefaults.AuthenticationScheme
+//                });
+
+//                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+//               {
+//               {
+//              new OpenApiSecurityScheme
+//              {
+//                Reference = new OpenApiReference
+//                {
+//                    Type = ReferenceType.SecurityScheme,
+//                    Id = JwtBearerDefaults.AuthenticationScheme
+//                }
+//              },
+//                 Array.Empty<string>()
+//              }
+//                     });
+//            });
+
 //            return services;
 
 //        }
 //    }
 //}
 
-
-//this commented cause it's done in program.cs no need to do this here
+//ON comment because it's  done by program.cs
